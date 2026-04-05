@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social Media API — Documentation</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0f1419;
+      --card: #1a2332;
+      --text: #e7ecf3;
+      --muted: #8b9cb3;
+      --accent: #3d8bfd;
+      --border: #2d3a4d;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f4f6f9;
+        --card: #fff;
+        --text: #1a2332;
+        --muted: #5c6b7f;
+        --accent: #0b5fff;
+        --border: #d8dee8;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, Segoe UI, Roboto, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header {
+      padding: 2rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--card);
+    }
+    h1 { margin: 0 0 0.5rem; font-size: 1.75rem; }
+    .sub { color: var(--muted); max-width: 48rem; }
+    main { max-width: 960px; margin: 0 auto; padding: 1.5rem; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    h2 { margin-top: 0; font-size: 1.2rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.5rem 0.6rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th { color: var(--muted); font-weight: 600; }
+    code {
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: 0.85em;
+      background: rgba(61, 139, 253, 0.12);
+      padding: 0.12em 0.35em;
+      border-radius: 4px;
+    }
+    .method { font-weight: 700; color: var(--accent); white-space: nowrap; }
+    ul { margin: 0.5rem 0; padding-left: 1.25rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Social Media API</h1>
+    <p class="sub">
+      REST endpoints for users, posts, comments, likes, and followers (mock data).
+      Base URL: <code>http://localhost:3000</code>
+    </p>
+  </header>
+  <main>
+    <section>
+      <h2>Content negotiation</h2>
+      <p>Default responses are JSON (<code>application/json</code>). Send
+        <code>Accept: application/xml</code> or <code>Accept: text/xml</code> for XML responses.</p>
+      <p>Write operations expect <code>Content-Type: application/json</code>.</p>
+    </section>
+
+    <section>
+      <h2>Users</h2>
+      <table>
+        <thead>
+          <tr><th>Method</th><th>URI</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="method">GET</td><td><code>/users</code></td><td>List users. Query: <code>page</code>, <code>limit</code></td></tr>
+          <tr><td class="method">GET</td><td><code>/users/:id</code></td><td>Get one user</td></tr>
+          <tr><td class="method">POST</td><td><code>/users</code></td><td>Create user. Body: username, email, password, full_name?, bio?</td></tr>
+          <tr><td class="method">PUT</td><td><code>/users/:id</code></td><td>Update user</td></tr>
+          <tr><td class="method">DELETE</td><td><code>/users/:id</code></td><td>Delete user</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Posts</h2>
+      <table>
+        <thead>
+          <tr><th>Method</th><th>URI</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="method">GET</td><td><code>/posts</code></td><td>List posts. Query: <code>page</code>, <code>limit</code>, <code>user_id</code></td></tr>
+          <tr><td class="method">GET</td><td><code>/posts/:id</code></td><td>Get one post</td></tr>
+          <tr><td class="method">POST</td><td><code>/posts</code></td><td>Create post. Body: user_id, caption?, image_url?</td></tr>
+          <tr><td class="method">PUT</td><td><code>/posts/:id</code></td><td>Update post</td></tr>
+          <tr><td class="method">DELETE</td><td><code>/posts/:id</code></td><td>Delete post</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Comments</h2>
+      <table>
+        <thead>
+          <tr><th>Method</th><th>URI</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="method">GET</td><td><code>/comments</code></td><td>List comments. Query: <code>page</code>, <code>limit</code>, <code>post_id</code></td></tr>
+          <tr><td class="method">GET</td><td><code>/comments/:id</code></td><td>Get one comment</td></tr>
+          <tr><td class="method">POST</td><td><code>/comments</code></td><td>Create comment. Body: post_id, user_id, text</td></tr>
+          <tr><td class="method">PUT</td><td><code>/comments/:id</code></td><td>Update comment</td></tr>
+          <tr><td class="method">DELETE</td><td><code>/comments/:id</code></td><td>Delete comment</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Likes</h2>
+      <table>
+        <thead>
+          <tr><th>Method</th><th>URI</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="method">GET</td><td><code>/likes</code></td><td>List likes. Query: <code>post_id</code>, <code>user_id</code>, <code>page</code>, <code>limit</code></td></tr>
+          <tr><td class="method">GET</td><td><code>/likes/:id</code></td><td>Get one like</td></tr>
+          <tr><td class="method">POST</td><td><code>/likes</code></td><td>Create like. Body: post_id, user_id</td></tr>
+          <tr><td class="method">PUT</td><td><code>/likes/:id</code></td><td>Update like</td></tr>
+          <tr><td class="method">DELETE</td><td><code>/likes/:id</code></td><td>Delete like</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Followers</h2>
+      <p>Represents “user A follows user B” as <code>follower_id</code> → <code>following_id</code>.</p>
+      <table>
+        <thead>
+          <tr><th>Method</th><th>URI</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="method">GET</td><td><code>/followers</code></td><td>List relationships. Query: <code>follower_id</code>, <code>following_id</code>, <code>page</code>, <code>limit</code></td></tr>
+          <tr><td class="method">GET</td><td><code>/followers/:id</code></td><td>Get one relationship</td></tr>
+          <tr><td class="method">POST</td><td><code>/followers</code></td><td>Create follow. Body: follower_id, following_id</td></tr>
+          <tr><td class="method">PUT</td><td><code>/followers/:id</code></td><td>Update relationship</td></tr>
+          <tr><td class="method">DELETE</td><td><code>/followers/:id</code></td><td>Delete (unfollow)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Response shape (JSON)</h2>
+      <ul>
+        <li>Success lists: <code>{ success, count, page, total_pages, data }</code></li>
+        <li>Success item: <code>{ success, data }</code></li>
+        <li>Errors: <code>{ success: false, error, statusCode }</code></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

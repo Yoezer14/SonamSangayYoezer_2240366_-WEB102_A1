@@ -1,0 +1,21 @@
+{
+  "name": "sonamsangayyoezer_2240366_-web102_a1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yoezer14/SonamSangayYoezer_2240366_-WEB102_A1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Yoezer14/SonamSangayYoezer_2240366_-WEB102_A1/issues"
+  },
+  "homepage": "https://github.com/Yoezer14/SonamSangayYoezer_2240366_-WEB102_A1#readme"
+}

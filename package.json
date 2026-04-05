@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "npm run dev --prefix social-media-api",
+    "start": "npm run start --prefix social-media-api",
+    "open": "npm run open --prefix social-media-api",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

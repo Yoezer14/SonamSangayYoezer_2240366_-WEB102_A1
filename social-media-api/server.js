@@ -52,10 +52,10 @@ function startOnPort(port, attemptsLeft) {
 
   server.on('error', (err) => {
     if (err.code === 'EADDRINUSE' && attemptsLeft > 0) {
-      const next = port + 1;
-      console.warn(`Port ${port} is already in use — trying ${next}…`);
+      const nextPort = port + 1;
+      console.warn(`Port ${port} is already in use — trying ${nextPort}…`);
       server.close();
-      startOnPort(next, attemptsLeft - 1);
+      startOnPort(nextPort, attemptsLeft - 1);
       return;
     }
     console.error(err);
@@ -63,12 +63,11 @@ function startOnPort(port, attemptsLeft) {
   });
 
   server.listen(port, host, () => {
-    // Step 10 (Practical): expected console output
     console.log(`Social media API listening on port ${port}`);
     console.log(`http://localhost:${port}/`);
     if (port !== basePort) {
       console.log(
-        `Note: PORT ${basePort} was in use; using ${port}. Set PORT in .env or close the other process.`
+        `Note: PORT ${basePort} was in use; using ${port}. Close the other app or set PORT in .env.`
       );
     }
   });
